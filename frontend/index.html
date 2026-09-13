@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Desk | Priority Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="logo"><span class="logo-mark">S</span><span>signal<span class="logo-dot">.</span></span></div>
+      <div class="workspace-label">OPERATIONS DESK <span class="live-dot"></span></div>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <button class="nav-tab active" data-view="messages-view"><span class="nav-icon">◈</span> Messages <span class="nav-count">05</span></button>
+        <button class="nav-tab" data-view="tasks-view"><span class="nav-icon">✓</span> Task Tracker</button>
+        <button class="nav-tab" data-view="vault-view"><span class="nav-icon">▣</span> Audit Vault</button>
+      </nav>
+      <div class="sidebar-foot"><span class="avatar avatar-user">PBK</span><span><strong>Pranav Baliram Kore</strong><small>Workspace admin</small></span><button class="sidebar-more" aria-label="Account menu">···</button></div>
+    </aside>
+
+    <main class="main-content">
+      <section id="messages-view" class="view active-view">
+        <header class="page-header"><div><p class="kicker">LIVE SIGNALS / 01</p><h1>Messages</h1><p class="page-subtitle">Monitor conversations and surface what needs attention.</p></div><div class="header-stats"><div><strong id="message-total">—</strong><span>messages tracked</span></div><div><strong class="accent-text">NLP</strong><span>priority engine active</span></div></div></header>
+        <div class="messages-layout">
+          <section class="conversation-panel panel">
+            <div class="panel-heading"><div><span class="panel-kicker">CHANNELS</span><h2>Group chats</h2></div><button class="round-action" aria-label="Add channel">+</button></div>
+            <div id="chat-list" class="chat-list"></div>
+          </section>
+          <section class="active-chat panel">
+            <header class="active-chat-header"><div><span class="channel-tag">CHANNEL <span id="active-channel-id">01</span></span><h2 id="active-chat-name">EDI Project</h2><p id="active-chat-meta">10 members · active now</p></div><div class="chat-actions"><button id="mute-toggle" class="quiet-button" type="button" aria-pressed="false">Mute</button><button class="quiet-button" type="button">•••</button></div></header>
+            <div id="chat-window" class="chat-window" aria-live="polite"></div>
+            <form id="message-form" class="message-composer"><input id="message-input" type="text" placeholder="Write to this channel..." maxlength="2000" autocomplete="off" required><button id="send-btn" type="submit">Send <span>↗</span></button></form>
+          </section>
+        </div>
+      </section>
+
+      <section id="tasks-view" class="view" hidden>
+        <header class="page-header"><div><p class="kicker">ACTIONABLES / 02</p><h1>Task Tracker</h1><p class="page-subtitle">Turn conversation signals into work that moves forward.</p></div><div class="header-stats"><div><strong id="task-total">—</strong><span>open tasks</span></div><div><strong id="task-done">—</strong><span>completed</span></div></div></header>
+        <section class="tasks-panel panel"><form id="task-form" class="task-form"><div><label for="task-description">New actionable</label><input id="task-description" type="text" placeholder="e.g. Review EDI submission" maxlength="240" required></div><div><label for="task-deadline">Deadline</label><input id="task-deadline" type="datetime-local"></div><button type="submit" class="primary-button">Add task <span>+</span></button></form><div class="task-toolbar"><div><span class="panel-kicker">WORK QUEUE</span><h2>Current priorities</h2></div><select id="task-filter" aria-label="Filter tasks"><option value="all">All tasks</option><option value="todo">To do</option><option value="in-progress">In progress</option><option value="done">Completed</option></select></div><div id="task-list" class="task-list"></div></section>
+      </section>
+
+      <section id="vault-view" class="view" hidden>
+        <header class="page-header"><div><p class="kicker">RECOVERY LOG / 03</p><h1>Audit Vault</h1><p class="page-subtitle">A durable record of critical signals that were changed or removed.</p></div><div class="header-stats"><div><strong id="audit-total">—</strong><span>events captured</span></div><div><strong class="warning-text">100%</strong><span>critical retention</span></div></div></header>
+        <section class="vault-panel panel"><div class="panel-heading"><div><span class="panel-kicker">PRIORITY LOG</span><h2>Recovered message context</h2></div><button id="refresh-vault" class="quiet-button" type="button">Refresh ↻</button></div><div class="table-wrap"><table><thead><tr><th>Original timestamp</th><th>Action</th><th>Recovered content</th><th>Logged at</th></tr></thead><tbody id="audit-log-body"></tbody></table></div></section>
+      </section>
+    </main>
+  </div>
+  <div id="toast-container" class="toast-container" aria-live="assertive"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
